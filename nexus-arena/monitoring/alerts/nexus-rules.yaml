@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata: {name: nexus-arena, labels: {release: monitoring}}
+spec:
+  groups:
+    - name: nexus
+      rules:
+        - alert: MatchmakingWaitHigh
+          # TODO: matchmaking-service must expose this histogram on /metrics
+          expr: histogram_quantile(0.95, sum(rate(matchmaking_wait_seconds_bucket[5m])) by (le)) > 60
+          for: 5m
+          labels: {severity: warning}
+        - alert: HighLatency
+          expr: histogram_quantile(0.95, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket[5m])) by (le)) > 1
+          for: 5m
+          labels: {severity: warning}
+        - alert: PodNotReady
+          expr: kube_deployment_status_replicas_unavailable > 0
+          for: 5m
+          labels: {severity: critical}

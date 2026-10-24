@@ -1,0 +1,5 @@
+apiVersion: v2
+name: common
+description: Shared Deployment, Service and Ingress templates
+type: library
+version: 0.1.0

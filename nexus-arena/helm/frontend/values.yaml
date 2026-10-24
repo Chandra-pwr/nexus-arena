@@ -1,0 +1,6 @@
+replicas: 1
+image: {repository: ghcr.io/YOUR_GH_USER/nexus-arena/frontend, tag: latest}
+port: 80
+probePath: /healthz
+resources: {requests: {cpu: 50m, memory: 64Mi}, limits: {cpu: 300m, memory: 256Mi}}
+ingress: {enabled: true, host: "nexus-arena.example.com"}

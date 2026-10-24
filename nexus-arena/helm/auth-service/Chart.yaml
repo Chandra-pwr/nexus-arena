@@ -1,0 +1,6 @@
+apiVersion: v2
+name: auth-service
+version: 0.1.0
+appVersion: "latest"
+dependencies:
+  - {name: common, version: 0.1.0, repository: "file://../common"}

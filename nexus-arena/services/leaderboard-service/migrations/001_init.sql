@@ -1,0 +1,1 @@
+-- leaderboard-service schema goes here (service is in-memory for now)

@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment: {POSTGRES_USER: nexus, POSTGRES_PASSWORD: nexus, POSTGRES_DB: auth}
+  auth-service:
+    build: ./services/auth-service
+    environment: {DATABASE_URL: "postgres://nexus:nexus@postgres:5432/auth?sslmode=disable", JWT_SECRET: dev-secret-change-me}
+    depends_on: [postgres]
+  matchmaking-service: {build: ./services/matchmaking-service}
+  game-state-service: {build: ./services/game-state-service}
+  inventory-service: {build: ./services/inventory-service}
+  leaderboard-service: {build: ./services/leaderboard-service}
+  chat-service: {build: ./services/chat-service}
+  frontend:
+    build: ./frontend
+    ports: ["8081:80"]
+    depends_on: [auth-service, matchmaking-service, game-state-service, inventory-service, leaderboard-service, chat-service]

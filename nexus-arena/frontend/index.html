@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus Arena | Pro Gaming Tournaments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<div class="stripes l"></div><div class="stripes r"></div>
+<nav><a class="brand" href="/">NEXUS ARENA</a>
+<a class="link" href="#home">Home</a><a class="link" href="#schedule">Schedule</a><a class="link" href="#leaderboard">Leaderboard</a><a class="link" href="#chat">Chat</a>
+<div class="auth" id="auth"><a href="login.html">Sign up</a> | <a href="login.html">Log in</a></div></nav>
+<header class="hero" id="home"><div class="ghost" aria-hidden="true">GAME BEGIN<br>GAME BEGIN<br>GAME BEGIN</div>
+<div><p class="tag">Professional gaming tournament</p>
+<h1>Let the <span>game begin</span></h1>
+<div class="pill"><span>Participants</span></div>
+<div class="pill sm"><span><b id="qcount">0</b> teams in queue</span></div>
+<div class="pill sm"><span>8 teams from open qualifiers</span></div>
+<div class="pill"><span>Open qualifier 1</span><b>Oct 25</b></div>
+<div class="pill"><span>Open qualifier 2</span><b>Dec 17</b></div></div>
+<div class="orb" aria-hidden="true">🎮</div>
+<form class="card" id="joinForm"><h2>Register and join our gaming tournament</h2>
+<label for="team">Team name</label><input id="team" required placeholder="Galaxy E-sport Team">
+<label for="email">Your email</label><input id="email" type="email" required placeholder="you@email.com">
+<label for="cat">Tournament category</label><select id="cat"><option>Solo</option><option>Duo</option><option>Squad</option></select>
+<button class="btn" type="submit">Join now</button></form></header>
+
+<section class="blk" id="schedule"><h2>Schedule</h2><table><tr><th>Round</th><th>Date</th><th>Format</th></tr>
+<tr><td>Open qualifier 1</td><td>Oct 25</td><td>Single elimination</td></tr>
+<tr><td>Open qualifier 2</td><td>Dec 17</td><td>Single elimination</td></tr>
+<tr><td>Grand final</td><td>Jan 18</td><td>Best of 5</td></tr></table></section>
+
+<section class="blk grid"><div id="leaderboard"><h2>Leaderboard</h2><table><thead><tr><th>#</th><th>Team</th><th>Score</th></tr></thead><tbody id="lb"></tbody></table><p class="empty" id="lbEmpty">No scores yet. Join a tournament to appear here.</p></div>
+<div id="chat"><h2>Arena chat</h2><div class="chat" id="msgs"></div>
+<div class="row"><input id="msg" placeholder="Write a message" aria-label="Message"><button class="btn" id="send">Send</button></div></div></section>
+<footer>Nexus Arena. Running on AWS and Azure.</footer><div id="toast" role="status"></div><script src="app.js"></script></body></html>

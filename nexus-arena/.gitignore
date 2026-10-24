@@ -1,0 +1,14 @@
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+crash.log
+.env
+*.pem
+node_modules/
+bin/
+*.test
+.idea/
+.vscode/
+.DS_Store

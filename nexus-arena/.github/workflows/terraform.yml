@@ -1,0 +1,24 @@
+name: terraform
+on:
+  pull_request: {paths: ["terraform/**"]}
+  push: {branches: [main], paths: ["terraform/**"]}
+permissions: {id-token: write, contents: read}
+jobs:
+  tf:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1   # layers depend on each other
+      matrix:
+        layer: [01-network, 02-eks, 03-addons]
+    defaults: {run: {working-directory: "terraform/live/dev/aws/${{ matrix.layer }}"}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - uses: aws-actions/configure-aws-credentials@v4
+        with: {role-to-arn: "${{ secrets.AWS_ROLE_ARN }}", aws-region: ap-south-1}
+      - run: terraform init
+      - run: terraform validate
+      - if: github.event_name == 'pull_request'
+        run: terraform plan -no-color
+      - if: github.event_name == 'push'
+        run: terraform apply -auto-approve
